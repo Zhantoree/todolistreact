@@ -1,3 +1,10 @@
+*{
+  margin: 0;
+  padding: 5px;
+  font-family: Arial, sans-serif;
+}
+
+
 .App {
   text-align: center;
 }
