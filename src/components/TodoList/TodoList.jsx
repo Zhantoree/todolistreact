@@ -1,67 +1,47 @@
 import {useState} from "react";
 
 export default function TodoList({todo, setTodo}) {
-
-    const [edit, setEdit] = useState(null)
-    const [value, setValue] = useState('')
-
     function deleteTodo(id) {
-        let newTodo = [...todo].filter(item => item.id !== id)
-        setTodo(newTodo)
+        let newTodo = todo.filter(item => id!== item.id)
+        setTodo(newTodo);
     }
-
-    function statusTodo(id) {
-        let newTodo = [...todo].filter(item => {
-            if (item.id === id) {
+    function changeTodo(id) {
+        let newTodo = todo.map(item => {
+            if(item.id === id) {
                 item.status = !item.status
             }
-            return item;
+            return item
         })
         setTodo(newTodo)
+        console.log(todo)
     }
+    let [edit, setEdit] = useState(null)
+    function editTodo(id) {
+        let newTodo = todo.filter(item => {
+            if(item.id === id) {
 
-    function editTodo(id, title) {
-        setEdit(id);
-        setValue(title);
-    }
-
-    function saveTodo(id) {
-        let newTodo = [...todo].map(item => {
-            if (item.id === id) {
-                item.title = value;
             }
-            return item;
         })
-        setTodo(newTodo);
-        setEdit(null)
     }
 
     return (
         <div>
             {
-                todo.map(item => (
+                todo.map(item =>
                     <div key={item.id}>
+                        <h3>{item.title}</h3>
                         {
-                            edit === item.id ?
-                                <div>
-                                    <input value={value} onChange={(e) => setValue(e.target.value)}/>
-                                </div>
-                                :
-                                <h4>{item.title}</h4>
+                            edit === item.id :
+                            input
+
                         }
-                        {
-                            edit === item.id ?
-                                <div>
-                                    <button onClick={() => saveTodo(item.id)}>Save</button>
-                                </div> :
-                                <div>
-                                    <button onClick={() => deleteTodo(item.id)}>Delete</button>
-                                    <button onClick={() => editTodo(item.id, item.title)}>Edit</button>
-                                    <button onClick={() => statusTodo(item.id)}>Close</button>
-                                </div>
-                        }
+
+
+                        <button onClick={() => deleteTodo(item.id)}>Delete</button>
+                        <button onClick={() => changeTodo(item.id)}>Open / Close</button>
+                        <button onClick={() => editTodo(item.id)}>Edit</button>
                     </div>
-                ))
+                )
             }
         </div>
     );

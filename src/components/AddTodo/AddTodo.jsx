@@ -1,29 +1,24 @@
 import {useState} from "react";
-import { v1 as uuid } from 'uuid';
 
 export default function AddTodo({todo, setTodo}) {
-
     const [value, setValue] = useState('')
-    function saveTodo() {
-        setTodo(
-            [...todo, {
-                id: uuid(),
-                title: value,
-                status: 'true'
-            }]
-        )
-        setValue('')
+
+
+
+    function addTodo() {
+        let newTodo = [...todo, {
+            id: Date.now(),
+            title: value,
+            status: true
+        }]
+        setTodo(newTodo)
     }
-
-    return(
+    return (
         <div>
-            <input value={value} placeholder={"Type task"} onChange={(e) => setValue(e.target.value)}/>
-            <button onClick={saveTodo}>Save</button>
-            {
-                console.log(todo)
-            }
+            <input onChange={(e)=>setValue(e.target.value)} placeholder={"Type here"}/>
+            <button onClick={() => addTodo()}>Save</button>
         </div>
-
     );
+
 
 }

@@ -9,17 +9,17 @@ function App() {
         {
             id:1,
             title: 'first todo',
-            status: 'true'
+            status: true
         },
         {
             id:2,
             title: 'second todo',
-            status: 'true'
+            status: true
         },
         {
             id:3,
             title: 'third todo',
-            status: 'false'
+            status: false
         }
     ])
 
