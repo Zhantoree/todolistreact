@@ -7,18 +7,23 @@ export default function AddTodo({todo, setTodo}) {
     function saveTodo() {
         setTodo(
             [...todo, {
-                id: uuid,
+                id: uuid(),
                 title: value,
-                status: true
+                status: 'true'
             }]
         )
-        setValue("")
+        setValue('')
     }
 
     return(
         <div>
-            <input type="text" value={value} placeholder={"Type task"} onChange={(e) => setValue(e.target.value)}/>
+            <input value={value} placeholder={"Type task"} onChange={(e) => setValue(e.target.value)}/>
             <button onClick={saveTodo}>Save</button>
+            {
+                console.log(todo)
+            }
         </div>
+
     );
+
 }

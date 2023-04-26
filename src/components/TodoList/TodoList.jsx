@@ -3,7 +3,8 @@ import {useState} from "react";
 export default function TodoList({todo, setTodo}) {
 
     const [edit, setEdit] = useState(null)
-    const [value, setValue] = useState()
+    const [value, setValue] = useState('')
+
     function deleteTodo(id) {
         let newTodo = [...todo].filter(item => item.id !== id)
         setTodo(newTodo)
@@ -25,8 +26,8 @@ export default function TodoList({todo, setTodo}) {
     }
 
     function saveTodo(id) {
-        let newTodo = [...todo].map(item=> {
-            if(item.id === id) {
+        let newTodo = [...todo].map(item => {
+            if (item.id === id) {
                 item.title = value;
             }
             return item;
@@ -34,15 +35,16 @@ export default function TodoList({todo, setTodo}) {
         setTodo(newTodo);
         setEdit(null)
     }
+
     return (
         <div>
             {
                 todo.map(item => (
                     <div key={item.id}>
                         {
-                            edit===item.id ?
+                            edit === item.id ?
                                 <div>
-                                    <input value={value} onChange={(e)=> setValue(e.target.value)} />
+                                    <input value={value} onChange={(e) => setValue(e.target.value)}/>
                                 </div>
                                 :
                                 <h4>{item.title}</h4>
@@ -58,9 +60,6 @@ export default function TodoList({todo, setTodo}) {
                                     <button onClick={() => statusTodo(item.id)}>Close</button>
                                 </div>
                         }
-
-
-
                     </div>
                 ))
             }
