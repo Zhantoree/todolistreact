@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+}
+
+.popup {
+    z-index: 1000;
+    position: absolute;
+    left: 70%;
+    top: 5%;
+    width: 20vw;
+    height: 5vh;
+    background-color: #fff;
+    border: 5px solid #0afff0;
+    border-radius: 100px;
+    text-align: center;
+    font-size: 24px;
+}
+.text {
+    height: 100%;
+    color: #494949;
+}
